@@ -148,7 +148,7 @@ function App() {
 
   return (
     <div>
-      <h1>API Data:</h1>
+      <h1>GitHub Dashboard</h1>
       <AuthForm
         onSubmit={(data) => {
           console.log(data);
@@ -158,13 +158,19 @@ function App() {
       />
       {error && <p>Error: {error.message}</p>}
       {/* Render your data here */}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-      <ul>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <select name="myScrollableList" id="myScrollableList" size={10}>
         {data &&
           data.map((item: Repo, index: number) => (
-            <li key={index}>{item.name}</li>
+            <option
+              key={index}
+              value={item.name}
+              selected={item.name === "github-dashboard"}
+            >
+              {item.name}
+            </option>
           ))}
-      </ul>
+      </select>
     </div>
   );
 }
