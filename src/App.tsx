@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import AuthForm from "./AuthForm";
 type Owner = {
   login: string;
   id: number;
@@ -145,6 +146,7 @@ function App() {
   return (
     <div>
       <h1>API Data:</h1>
+      <AuthForm onSubmit={(data) => console.log(data)} />
       {/* Render your data here */}
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <ul>
