@@ -4,6 +4,7 @@ import "./App.css";
 import AuthForm from "./AuthForm";
 import type { Repo } from "./types";
 import RepoScroll from "./RepoScroll";
+import RepoCard from "./RepoCard";
 
 function App() {
   const [data, setData] = useState<Repo[]>([]);
@@ -11,6 +12,7 @@ function App() {
   const [error, setError] = useState<Error | null>(null);
   const [username, setUsername] = useState("jebarpg");
   const [pat, setPat] = useState("");
+  const [selectedRepo, setSelectedRepo] = useState<Repo | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +51,8 @@ function App() {
       {error && <p>Error: {error.message}</p>}
       {/* Render your data here */}
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      <RepoScroll data={data} onSelect={(repo) => console.log(repo)} />
+      <RepoScroll data={data} onSelect={(repo) => setSelectedRepo(repo)} />
+      {selectedRepo && <RepoCard repo={selectedRepo} />}
     </div>
   );
 }
