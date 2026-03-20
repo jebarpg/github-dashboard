@@ -118,6 +118,8 @@ const RepoCard = ({ repo }: RepoCardProps) => {
           gap: 12,
           fontSize: "0.9em",
           marginBottom: 12,
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <span>⭐ {stargazers_count}</span>

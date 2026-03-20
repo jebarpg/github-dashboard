@@ -40,7 +40,6 @@ export default function AuthForm({ onSubmit }: LoginFormProps) {
           required={seePrivate}
         />
       )}
-
       <label>
         <input
           type="checkbox"
@@ -49,7 +48,7 @@ export default function AuthForm({ onSubmit }: LoginFormProps) {
         />
         See your private repos
       </label>
-
+      &nbsp;&nbsp;&nbsp;&nbsp; {/* space between checkbox and button */}
       <button
         type="submit"
         disabled={!username.trim() || (seePrivate && !pat.trim())}

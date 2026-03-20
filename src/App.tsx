@@ -18,7 +18,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.github.com/users/${username}/repos`
+          `https://api.github.com/users/${username}/repos`,
         ); // GitHub API endpoint
         setData(response.data); // Axios automatically parses JSON
         setError(null);
@@ -41,6 +41,7 @@ function App() {
   return (
     <div>
       <h1>GitHub Dashboard</h1>
+
       <AuthForm
         onSubmit={(data) => {
           console.log(data);
@@ -48,11 +49,26 @@ function App() {
           if (data.pat) setPat(data.pat);
         }}
       />
+
       {error && <p>Error: {error.message}</p>}
-      {/* Render your data here */}
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      <RepoScroll data={data} onSelect={(repo) => setSelectedRepo(repo)} />
-      {selectedRepo && <RepoCard repo={selectedRepo} />}
+
+      <div
+        style={{
+          display: "flex",
+          gap: 20,
+          alignItems: "flex-start", // keeps top-aligned
+        }}
+      >
+        {/* LEFT SIDE */}
+        <div style={{ flex: 1 }}>
+          <RepoScroll data={data} onSelect={(repo) => setSelectedRepo(repo)} />
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div style={{ flex: 1 }}>
+          {selectedRepo && <RepoCard repo={selectedRepo} />}
+        </div>
+      </div>
     </div>
   );
 }
